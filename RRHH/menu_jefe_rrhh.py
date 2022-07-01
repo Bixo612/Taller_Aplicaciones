@@ -1,6 +1,6 @@
 from tkinter import *
 
-from Taller_Aplicaciones.RRHH.inicio import fx_pass
+
 
 vent = Tk()
 vent.title("Inicio")
@@ -8,14 +8,14 @@ vent.geometry("500x250")
 
 # defincion de elementos
 lbl_bienvenido          = Label(vent,text="Bienvenido",bg="yellow")
-btn_agregarIdLaboral    = Button(vent,text="Agregar Id laboral",command=fx_pass)
-btn_agregarCargo        = Button(vent,text="Agregar cargo", command=fx_pass)
-btn_agregarTrabajador   = Button(vent,text="Agregar Trabajador",command=fx_pass) 
-btn_listarPorTrabajador = Button(vent,text="Lista de Trabajadores", command=fx_pass)
-btn_listarPorCargo      = Button(vent,text="Listar por cargos", command=fx_pass)
-btn_modificarContactos  = Button(vent,text="Contactos de emergencia",command=fx_pass)
-btn_modificarCargas     = Button(vent,text="Cargas familiares",command=fx_pass)
-btn_modifcarDatos       = Button(vent,text="Modificar datos",command=fx_pass)
+btn_agregarIdLaboral    = Button(vent,text="Agregar Id laboral")
+btn_agregarCargo        = Button(vent,text="Agregar cargo")
+btn_agregarTrabajador   = Button(vent,text="Agregar Trabajador") 
+btn_listarPorTrabajador = Button(vent,text="Lista de Trabajadores")
+btn_listarPorCargo      = Button(vent,text="Listar por cargos")
+btn_modificarContactos  = Button(vent,text="Contactos de emergencia")
+btn_modificarCargas     = Button(vent,text="Cargas familiares")
+btn_modifcarDatos       = Button(vent,text="Modificar datos")
 
 # pocision de elementos
 lbl_bienvenido.grid(row=0,column=1,padx=2,pady=2)
