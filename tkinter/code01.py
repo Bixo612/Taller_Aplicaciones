@@ -19,4 +19,3 @@ btn.pack()
 
 ventana.mainloop()
 
-#https://www.youtube.com/watch?v=y69rqjEfwYI&list=WL&index=2&ab_channel=TurboC%C3%B3digo
