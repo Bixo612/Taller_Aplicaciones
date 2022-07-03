@@ -5,7 +5,7 @@ con = mysql.connector.connect(
     host="localhost",
     user="root",
     password="",
-    
+    database="RRHH"
     )
 
 cursor = con.cursor()
@@ -66,15 +66,15 @@ class FxSql():
 
 # FxSql.agregarTrabajador("19360397-K",1,"Activo",951797671,"Calle 123","RH","clave",date.today(),date.today(),10,5)
 # FxSql.agregarTrabajador("19360397-1",2,"Activo",951797671,"Calle 123","RH","clave",date.today(),date.today(),10,5)
-FxSql.agregarTrabajador("19360397-2",3,"Activo",951797671,"Calle 123","RH","clave",date.today(),10,5)
+#FxSql.agregarTrabajador("19360397-2",3,"Activo",951797671,"Calle 123","RH","clave",date.today(),10,5)
 
 
 # FxSql.agregarTrabajador("19360397-K",150,"Activo",951457895,"Isla Guafo 8934","usuario","pikachu",date.today(),None,15,1)
 
 # today = date.today()
 # print(today)
-for x in (FxSql.listarTrabajadores()):
-    print (x)
+"""for x in (FxSql.listarTrabajadores()):
+    print (x)"""
 # print(FxSql.listarTrabajadores())
 
 # FxSql.agregarPersona("19360397-K","Alan","Felipe","Soto","Campos","1996-05-12","M")
