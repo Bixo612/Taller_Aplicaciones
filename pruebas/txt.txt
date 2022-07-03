@@ -1,0 +1,3 @@
+02-07-2022
+
+Se crea el archivo "Taller_Aplicaciones/RRHH/formulariosInsercion.py" para prbar las inserciones de cargos y datos laborales, no se necesitan cambios en la clase con la funciones FxSql

@@ -1,7 +1,5 @@
 from tkinter import *
 
-
-
 vent = Tk()
 vent.title("Inicio")
 vent.geometry("500x250")
