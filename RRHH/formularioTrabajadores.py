@@ -1,10 +1,28 @@
-from cgitb import text
 from tkinter import *
+from webbrowser import get
+from funcionesSql import FxSql
+
+def obtenerTrabajador():
+    rut = txt_rut.get()
+    nombre1 = txt_primerNombre.get()
+    nombre2 = txt_segundoNombre.get()
+    apellido1 = txt_primerApellido.get()
+    apellido2 = txt_segundoApellido.get()
+    fechaNacimiento = txt_fechaNacimiento.get()
+    sexo = txt_sexo.get()
+    id = txt_id.get()
+    tel = txt_telefono.get()
+    direccion = txt_direccion.get()
+    rol = opt_rol.get()
+    FxSql.agregarPersona(rut,nombre1,nombre2,apellido1,apellido2,fechaNacimiento,sexo)
+    FxSql.agregarTrabajador(rut,id,"Activo",tel,direccion,rol,)
+
+def generarId():
+    pass
 
 vent = Tk()
 vent.title("Ingresar Trabajadores")
 vent.geometry("660x500")
-
 
 #AgregarTrbajadores
 frameTrabajadores = Frame(vent,bg = "lime green")
@@ -66,11 +84,19 @@ lbl_rol = Label(frameTrabajadores, text="Rol:", bg="yellow", anchor="w")
 lbl_rol.place(x=270,y=40,width=120,height=20)
 variable = StringVar(frameTrabajadores)
 variable.set("TJ") # default value
-txt_rol = OptionMenu(frameTrabajadores,variable,"RH","TJ","JR")
-txt_rol.place(x=400,y=40,width=120,height=20)
+opt_rol = OptionMenu(frameTrabajadores,variable,"RH","TJ","JR")
+opt_rol.place(x=400,y=40,width=120,height=20)
 #
+lbl_id = Label(frameTrabajadores,text="Id:", bg="yellow", anchor="w")
+lbl_id.place(x=270,y=190,width=120,height=20)
+txt_id = Entry(frameTrabajadores)
+txt_id.place(x=400,y=190,width=120,height=20)
+btn_id= Button(frameTrabajadores,text="Generar Id:",command=generarId)
+btn_id.place(x=530,y=190,width=120,height=20)
 
-
+#
+btn_registrar = Button(frameTrabajadores,text="Registrar",command=obtenerTrabajador)
+btn_registrar.place(x=140,y=190,width=120,height=20)
 # X pocision horizontal 
 # Y pocision vertical
 

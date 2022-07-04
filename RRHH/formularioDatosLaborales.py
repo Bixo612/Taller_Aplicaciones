@@ -24,7 +24,7 @@ frameLaborales = Frame(vent,bg ="light salmon")
 frameLaborales.pack(expand=True,fill="both")
 # Registrar cargo
 lbl_cargos = Label(frameCargos,text="Registrar cargo",bg="yellow")
-lbl_cargos.place(x=10,y=10,width=210,height=20)
+lbl_cargos.place(x=10,y=10,width=250,height=20)
 #
 lbl_idCargo = Label(frameCargos,text="ID Cargo:",bg="yellow",anchor="w")
 lbl_idCargo.place(x=10,y=40,width=120,height=20)
@@ -41,7 +41,7 @@ btn_registarCargo.place(x=140,y=100,width=120,height=20)
 
 # Registar Datos laborales
 lbl_laborales = Label(frameLaborales,text="Registrar datos laborales",bg="yellow")
-lbl_laborales.place(x=10,y=10,width=210,height=20)
+lbl_laborales.place(x=10,y=10,width=250,height=20)
 #
 lbl_idLaborales = Label(frameLaborales,text="ID Labrales:",bg="yellow",anchor="w")
 lbl_idLaborales.place(x=10,y=40,width=120,height=20)
