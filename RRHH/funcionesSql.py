@@ -58,30 +58,41 @@ class FxSql():
         resultado = cursor.fetchall()
         return resultado
 
-    
+    def validarClave(id_trabajador,clave):
+        sql = "SELECT id_trabajador,clave,rol FROM trabajadores WHERE id_trabajador = %s"
+        val = (id_trabajador,)
+        cursor.execute(sql,val)
+        resultado = cursor.fetchall()
+        clave_bd = resultado[0]
+        rol = clave_bd[2]
+        clave_bd = clave_bd[1]
+        if clave_bd == clave:
+            return rol
+        else:
+            return False
 
-    def consultarPorIdYClave(id_trabajador,clave):
-        pass
+"""
+print(FxSql.validarClave(2,"clave"))
+print(FxSql.validarClave(1,"5"))
 
-
-# FxSql.agregarTrabajador("19360397-K",1,"Activo",951797671,"Calle 123","RH","clave",date.today(),date.today(),10,5)
-# FxSql.agregarTrabajador("19360397-1",2,"Activo",951797671,"Calle 123","RH","clave",date.today(),date.today(),10,5)
-# FxSql.agregarTrabajador("19360397-2",3,"Activo",951797671,"Calle 123","RH","clave",date.today(),10,5)
-
-
-# FxSql.agregarTrabajador("19360397-K",150,"Activo",951457895,"Isla Guafo 8934","usuario","pikachu",date.today(),None,15,1)
-
-# today = date.today()
-# print(today)
-"""for x in (FxSql.listarTrabajadores()):
-    print (x)"""
-# print(FxSql.listarTrabajadores())
-
-# FxSql.agregarPersona("19360397-K","Alan","Felipe","Soto","Campos","1996-05-12","M")
-# FxSql.agregarPersona("19360397-1","Marco","Antonio","Muñoz","Valdez","1996-03-12","M")
-# FxSql.agregarPersona("19360397-2","Sofia","Anotnia","Rosas","Contreras","1996-04-12","F")
-
-# FxSql.agregarDatosLaborales(10,"Recursos Humanos","Administracion")
-# FxSql.agregarCargo(5,"Administrador")
+FxSql.agregarTrabajador("19360397-K",1,"Activo",951797671,"Calle 123","RH","clave",date.today(),date.today(),10,5)
+FxSql.agregarTrabajador("19360397-1",2,"Activo",951797671,"Calle 123","RH","clave",date.today(),date.today(),10,5)
+FxSql.agregarTrabajador("19360397-2",3,"Activo",951797671,"Calle 123","RH","clave",date.today(),10,5)
 
 
+FxSql.agregarTrabajador("19360397-K",150,"Activo",951457895,"Isla Guafo 8934","usuario","pikachu",date.today(),None,15,1)
+
+today = date.today()
+print(today)
+for x in (FxSql.listarTrabajadores()):
+    print (x)
+print(FxSql.listarTrabajadores())
+
+FxSql.agregarPersona("19360397-K","Alan","Felipe","Soto","Campos","1996-05-12","M")
+FxSql.agregarPersona("19360397-1","Marco","Antonio","Muñoz","Valdez","1996-03-12","M")
+FxSql.agregarPersona("19360397-2","Sofia","Anotnia","Rosas","Contreras","1996-04-12","F")
+
+FxSql.agregarDatosLaborales(10,"Recursos Humanos","Administracion")
+FxSql.agregarCargo(5,"Administrador")
+
+"""
