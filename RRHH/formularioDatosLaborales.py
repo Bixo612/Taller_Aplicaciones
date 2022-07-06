@@ -13,6 +13,9 @@ def obtenerLaborales():
     depa=txt_departamento.get()
     FxSql.agregarDatosLaborales(id,area,depa)
 
+def cambiar():
+    pass 
+
 vent = Tk()
 vent.title("Ingresar Datos laborales")
 vent.geometry("750x500")
@@ -36,29 +39,33 @@ lbl_nombreCargo.place(x=10,y=70,width=120,height=20)
 txt_nombreCargo = Entry(frameCargos,bg="pink")
 txt_nombreCargo.place(x=140,y=70,width=120,height=20)
 #
-btn_registarCargo = Button(vent,text="Registrar", command=obtenerCargo)
+btn_registarCargo = Button(frameCargos,text="Registrar", command=obtenerCargo)
 btn_registarCargo.place(x=140,y=100,width=120,height=20)
+btn_cambiar = Button(frameCargos,text="Cambiar", command=cambiar)
+btn_cambiar.place(x=10,y=100,width=120,height=20)
 
 # Registar Datos laborales
 lbl_laborales = Label(frameLaborales,text="Registrar datos laborales",bg="yellow")
 lbl_laborales.place(x=10,y=10,width=210,height=20)
-#
+
 lbl_idLaborales = Label(frameLaborales,text="ID Labrales:",bg="yellow",anchor="w")
 lbl_idLaborales.place(x=10,y=40,width=120,height=20)
 txt_idLaborales = Entry(frameLaborales,bg="pink")
 txt_idLaborales.place(x=140,y=40,width=120,height=20)
-#
+
 lbl_area = Label(frameLaborales,text="Nombre Cargo:",bg="yellow",anchor="w")
 lbl_area.place(x=10,y=70,width=120,height=20)
 txt_area = Entry(frameLaborales,bg="pink")
 txt_area.place(x=140,y=70,width=120,height=20)
-#
+
 lbl_departamento = Label(frameLaborales,text="Nombre Departamento:",bg="yellow",anchor="w")
 lbl_departamento.place(x=10,y=100,width=120,height=20)
 txt_departamento = Entry(frameLaborales,bg="pink")
 txt_departamento.place(x=140,y=100,width=120,height=20)
-#
-btn_registarCargo = Button(frameLaborales,text="Registrar", command=obtenerLaborales)
-btn_registarCargo.place(x=140,y=130,width=120,height=20)
+
+btn_registarLaborales = Button(frameLaborales,text="Registrar", command=obtenerLaborales)
+btn_registarLaborales.place(x=140,y=130,width=120,height=20)
+btn_cambiar = Button(frameLaborales,text="Cambiar", command=cambiar)
+btn_cambiar.place(x=10,y=130,width=120,height=20)
 
 vent.mainloop()
