@@ -1,6 +1,6 @@
 from funcionesSql import FxSql
 
-secion = (False,None)
+sesion = (False,None)
 
 def iniciarSesion():
     print ("*** RRHH ***")
@@ -10,9 +10,9 @@ def iniciarSesion():
     (rol, user)
     return (rol, user)
 
-secion = iniciarSesion()
-if secion[0] == False:
+sesion = iniciarSesion()
+if sesion[0] == False:
     print ("Usuario o contraseña incorrecto")
 else:
-    print ("Inciio de secion correcto")
-    print (secion)
+    print ("Incio de sesion correcto")
+    print (sesion)

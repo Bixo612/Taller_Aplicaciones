@@ -1,5 +1,5 @@
 import mysql.connector
-from datetime import date
+#from datetime import date
 
 con = mysql.connector.connect(
     host="localhost",
@@ -11,6 +11,22 @@ con = mysql.connector.connect(
 cursor = con.cursor()
 
 class FxSql():
+
+    def validarClave(id_trabajador,clave):
+        sql = "SELECT id_trabajador,clave,rol FROM trabajadores WHERE id_trabajador = %s"
+        val = (id_trabajador,)
+        cursor.execute(sql,val)
+        resultado = cursor.fetchall()
+        if resultado == []:
+            return False
+        else:
+            clave_bd = resultado[0]
+            rol = clave_bd[2]
+            clave_bd = clave_bd[1]
+            if clave_bd == clave:
+                return rol
+            else:
+                return False
 
     # Funciones de agregacion
 
@@ -58,32 +74,18 @@ class FxSql():
         resultado = cursor.fetchall()
         return resultado
 
-    def validarClave(id_trabajador,clave):
-        sql = "SELECT id_trabajador,clave,rol FROM trabajadores WHERE id_trabajador = %s"
-        val = (id_trabajador,)
-        cursor.execute(sql,val)
-        resultado = cursor.fetchall()
-        if resultado == []:
-            return False
-        else:
-            clave_bd = resultado[0]
-            rol = clave_bd[2]
-            clave_bd = clave_bd[1]
-            if clave_bd == clave:
-                return rol
-            else:
-                return False
 
-##print(FxSql.validarClave("5","5"))
+
+
 
 """
+print(FxSql.validarClave("5","5"))
 print(FxSql.validarClave(2,"clave"))
 print(FxSql.validarClave("1","5"))
 
 FxSql.agregarTrabajador("19360397-K",1,"Activo",951797671,"Calle 123","RH","clave",date.today(),date.today(),10,5)
 FxSql.agregarTrabajador("19360397-1",2,"Activo",951797671,"Calle 123","RH","clave",date.today(),date.today(),10,5)
 FxSql.agregarTrabajador("19360397-2",3,"Activo",951797671,"Calle 123","RH","clave",date.today(),10,5)
-
 
 FxSql.agregarTrabajador("19360397-K",150,"Activo",951457895,"Isla Guafo 8934","usuario","pikachu",date.today(),None,15,1)
 
@@ -99,5 +101,4 @@ FxSql.agregarPersona("19360397-2","Sofia","Anotnia","Rosas","Contreras","1996-04
 
 FxSql.agregarDatosLaborales(10,"Recursos Humanos","Administracion")
 FxSql.agregarCargo(5,"Administrador")
-
 """
