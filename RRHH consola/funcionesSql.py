@@ -12,6 +12,13 @@ cursor = con.cursor()
 
 class FxSql():
 
+    def consultarPerfil(id):
+        sql = "SELECT personas.rut,CONCAT(personas.primer_nombre,' ',personas.segundo_nombre,' ',personas.primer_apellido,' ',personas.segundo_apellido),fecha_nacimiento,sexo FROM personas JOIN trabajadores ON trabajadores.rut = personas.rut where id_trabajador = %s"
+        val = (id,)
+        cursor.execute(sql,val)
+        resultado = cursor.fetchall()
+        return resultado
+
     def validarClave(id_trabajador,clave):
         sql = "SELECT id_trabajador,clave,rol FROM trabajadores WHERE id_trabajador = %s"
         val = (id_trabajador,)
@@ -27,6 +34,9 @@ class FxSql():
                 return rol
             else:
                 return False
+
+
+
 
     # Funciones de agregacion
 
@@ -75,7 +85,11 @@ class FxSql():
         return resultado
 
 
-
+print (FxSql.consultarPerfil(1))
+print ("-"*150)
+print (FxSql.consultarPerfil(3))
+print ("-"*150)
+print (FxSql.consultarPerfil(2))
 
 
 """
