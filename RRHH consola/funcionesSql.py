@@ -1,5 +1,5 @@
 import mysql.connector
-#from datetime import date
+from datetime import date
 
 con = mysql.connector.connect(
     host="localhost",
@@ -13,7 +13,7 @@ cursor = con.cursor()
 class FxSql():
 
     def consultarPerfil(id):
-        sql = "SELECT personas.rut,CONCAT(personas.primer_nombre,' ',personas.segundo_nombre,' ',personas.primer_apellido,' ',personas.segundo_apellido),fecha_nacimiento,sexo FROM personas JOIN trabajadores ON trabajadores.rut = personas.rut where id_trabajador = %s"
+        sql = "SELECT trabajadores.id_trabajador, personas.rut, CONCAT(personas.primer_nombre,' ',personas.segundo_nombre,' ',personas.primer_apellido,' ',personas.segundo_apellido), personas.fecha_nacimiento, personas.sexo, trabajadores.telefono, trabajadores.direccion, trabajadores.fecha_ingreso, trabajadores.id_laborales, trabajadores.id_cargo FROM personas JOIN trabajadores ON trabajadores.rut = personas.rut where id_trabajador = %s"
         val = (id,)
         cursor.execute(sql,val)
         resultado = cursor.fetchall()
@@ -85,11 +85,11 @@ class FxSql():
         return resultado
 
 
-print (FxSql.consultarPerfil(1))
+
+print (FxSql.consultarPerfil(150))
 print ("-"*150)
-print (FxSql.consultarPerfil(3))
-print ("-"*150)
-print (FxSql.consultarPerfil(2))
+print (FxSql.consultarPerfil(156))
+
 
 
 """
