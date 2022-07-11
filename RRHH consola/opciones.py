@@ -4,7 +4,12 @@ from funcionesSql import FxSql
 
 class Opciones ():
 
-    def gestionDepartamentosCargos(id):
+    def gestionTrabajadores():
+        print("Gestor de trabajadores")
+        exit = True
+        
+
+    def gestionDepartamentosCargos():
         print("Gestor de contactos de cargos y departamentos")
         exit = True
         while exit:

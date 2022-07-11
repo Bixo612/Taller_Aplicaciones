@@ -18,7 +18,10 @@ class Menu():
             if opcion == "2":
                 Opciones.gestionCargasContactos(id)
             if opcion == "3":
-                Opciones.gestionDepartamentosCargos(id)
+                Opciones.gestionDepartamentosCargos()
+            if opcion == "4":
+                Opciones.gestionTrabajadores()
+            
             if opcion == "0":
                 exit = False
 
