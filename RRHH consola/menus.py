@@ -1,39 +1,29 @@
 from funcionesSql import FxSql
-sesion = (False,None)
+from opciones import Opciones
 
-def iniciarSesion():
-    print ("*** RRHH ***")
-    user = str(input ("Ingrese usuario: "))
-    password = str(input ("Ingese su clave: "))
-    rol = FxSql.validarClave(user, password)
-    (rol, user)
-    return (rol, user)
+class Menu():
 
-def menuJR():
-    print("Menu de personal de jefe de recursos humanos")
-    exit = True
-    while exit:
-        opcion = input("Ingrese una opcion")
-        if opcion == "0":
-            exit = False
+    def menuJR(id):
+        print("Menu de personal de jefe de recursos humanos")
+        exit = True
+        while exit:
+            print("0 Salir")
+            print("1 Consultar perfil")
+            print("2 Gestor de cargas y contactos de emergencia")
+            print("3 Gestor de cargos y departamentos")
+            print("4 Gestor de trabajadores")
+            opcion = input("Ingrese una opcion: ")
+            if opcion == "1":
+                print(FxSql.consultarPerfil(id))
+            if opcion == "2":
+                Opciones.gestionCargasContactos(id)
+            if opcion == "3":
+                Opciones.gestionDepartamentosCargos(id)
+            if opcion == "0":
+                exit = False
 
-def menuRH():
-    print("Menu de personal de recursos humanos")
+    def menuRH():
+       print("Menu de personal de recursos humanos")
 
-def menuTJ():
-    print("Menu de trabajadores")
-
-sesion = iniciarSesion()
-if sesion[0] == False:
-    print ("Usuario o contraseña incorrecto")
-else:
-    print ("Incio de sesion correcto")
-    print ("Bienvenido",sesion[1],sesion[0])
-    if sesion[0] == "JR":
-        menuJR()
-    if sesion[0] == "RH":
-        menuRH()
-    if sesion[0] == "TJ":
-        menuTJ()
-
-print ("Hasta luego :D")
+    def menuTJ():
+        print("Menu de trabajadores")
