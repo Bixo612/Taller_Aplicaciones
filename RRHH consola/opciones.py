@@ -1,4 +1,3 @@
-
 from funcionesSql import FxSql
 from validaciones import Val
 
@@ -63,7 +62,6 @@ class Opciones ():
                     FxSql.actualizarClave(id,claveNueva)
             if opcion == "0":
                 exit = False
-
 
     def gestionTrabajadores(id):
         print("Gestor de trabajadores")
@@ -210,5 +208,3 @@ class Opciones ():
                 FxSql.eliminarContactoNombre(nombre, id)
             if opcion == "0":
                 exit = False
-
-

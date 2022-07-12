@@ -1,7 +1,6 @@
 import mysql.connector
 from datetime import date
 
-
 con = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -247,6 +246,3 @@ class FxSql():
                 cursor.execute(sql,val)
                 con.commit()
                 print("¡Se a cambiado el estado del trabajador",id,"a Activo")
-
-
-
