@@ -13,6 +13,7 @@ class Menu():
             print("3 Gestor de cargos y departamentos")
             print("4 Gestor de trabajadores")
             print("5 Editar perfil")
+            print("6 Gestor de trabajadores avanzados")
             opcion = input("--Ingrese una opcion: ")
             if opcion == "1":
                 print(FxSql.consultarPerfil(id))
@@ -24,6 +25,8 @@ class Menu():
                 Opciones.gestionTrabajadores(id)
             if opcion == "5":
                 Opciones.editarPerfil(id)
+            if opcion == "6":
+                Opciones.gestionTrabajadoresAvanzado(id)
             if opcion == "0":
                 exit = False
 
@@ -36,6 +39,7 @@ class Menu():
             print("2 Gestor de cargas y contactos de emergencia")
             print("3 Gestor de trabajadores")
             print("4 Editar perfil")
+            print("5 Gestor de trabajadores Avanzado")
             opcion = input("--Ingrese una opcion: ")
             if opcion == "1":
                 print(FxSql.consultarPerfil(id))

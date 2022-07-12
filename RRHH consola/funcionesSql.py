@@ -1,7 +1,4 @@
-from calendar import c
-from unittest import result
 import mysql.connector
-
 
 con = mysql.connector.connect(
     host="localhost",
@@ -30,6 +27,13 @@ class FxSql():
             else:
                 return False
 
+    def actualizarClave(id,claveNueva):
+        sql = "UPDATE trabajadores SET clave = %s WHERE id_trabajador = %s"
+        val = (claveNueva,id,)
+        cursor.execute(sql, val)
+        con.commit()
+        print("¡Contraseña actualizada!")
+
     def consultarPerfil(id_trabajador):
         sql = "SELECT trabajadores.id_trabajador, personas.rut, CONCAT(personas.primer_nombre,' ',personas.segundo_nombre,' ',personas.primer_apellido,' ',personas.segundo_apellido), personas.fecha_nacimiento, personas.sexo, trabajadores.telefono, trabajadores.direccion, trabajadores.fecha_ingreso, trabajadores.id_laborales, trabajadores.id_cargo FROM personas JOIN trabajadores ON trabajadores.rut = personas.rut where id_trabajador = %s"
         val = (id_trabajador,)
@@ -57,7 +61,7 @@ class FxSql():
         cursor.execute(sql, val)
         resultado = cursor.fetchall()
         if resultado == []:
-            print("No existe dentro de los registros")
+            print("¡No existe dentro de los registros!")
             return False
         else:
             sql = "DELETE FROM cargas WHERE rut = %s"
@@ -137,8 +141,22 @@ class FxSql():
         con.commit()
 
     def listarTrabajadores():
-        sql = "SELECT trabajadores.id_trabajador, personas.rut, CONCAT(personas.primer_nombre,' ',personas.segundo_nombre,' ',personas.primer_apellido,' ',personas.segundo_apellido), personas.fecha_nacimiento, personas.sexo, trabajadores.telefono, trabajadores.direccion, trabajadores.fecha_ingreso, trabajadores.id_laborales, trabajadores.id_cargo, trabajadores.estado FROM personas JOIN trabajadores ON trabajadores.rut = personas.rut"
+        sql = "SELECT trabajadores.id_trabajador, personas.rut, CONCAT(personas.primer_nombre,' ',personas.segundo_nombre,' ',personas.primer_apellido,' ',personas.segundo_apellido), personas.fecha_nacimiento, personas.sexo, trabajadores.telefono, trabajadores.direccion, trabajadores.fecha_ingreso, trabajadores.id_laborales, trabajadores.id_cargo, trabajadores.estado FROM personas JOIN trabajadores ON trabajadores.rut = personas.rut ORDER BY trabajadores.id_trabajador"
         cursor.execute(sql)
+        resultado = cursor.fetchall()
+        return resultado
+
+    def listarTrabajadoresCargo(id):
+        sql = "SELECT trabajadores.id_trabajador, personas.rut, CONCAT(personas.primer_nombre,' ',personas.segundo_nombre,' ',personas.primer_apellido,' ',personas.segundo_apellido), personas.fecha_nacimiento, personas.sexo, trabajadores.telefono, trabajadores.direccion, trabajadores.fecha_ingreso, trabajadores.id_laborales, trabajadores.id_cargo, trabajadores.estado FROM personas JOIN trabajadores ON trabajadores.rut = personas.rut WHERE id_cargo = %s "
+        val = (id,)
+        cursor.execute(sql,val)
+        resultado = cursor.fetchall()
+        return resultado
+
+    def listarTrabajadoresDepartamento(id):
+        sql = "SELECT trabajadores.id_trabajador, personas.rut, CONCAT(personas.primer_nombre,' ',personas.segundo_nombre,' ',personas.primer_apellido,' ',personas.segundo_apellido), personas.fecha_nacimiento, personas.sexo, trabajadores.telefono, trabajadores.direccion, trabajadores.fecha_ingreso, trabajadores.id_laborales, trabajadores.id_cargo, trabajadores.estado FROM personas JOIN trabajadores ON trabajadores.rut = personas.rut WHERE id_laborales = %s "
+        val = (id,)
+        cursor.execute(sql,val)
         resultado = cursor.fetchall()
         return resultado
 
@@ -198,8 +216,27 @@ class FxSql():
         else:
             return True
 
-
-
-    
+    def cambiarEstado(id):
+        sql = "SELECT estado FROM trabajadores WHERE id_trabajador = %s"
+        val = (id,)
+        cursor.execute(sql,val)
+        resultado = cursor.fetchall()
+        if resultado == []:
+            print ("¡No existe un trabajador con el id: ",id)
+        else:
+            resultado = resultado[0]
+            resultado = resultado[0]
+            if resultado == "Activo":
+                sql = "UPDATE trabajadores SET estado = 'Inactivo' WHERE id_trabajador = %s"
+                val = (id,)
+                cursor.execute(sql,val)
+                con.commit()
+                print("¡Se a cambiado el estado del trabajador",id,"a Inactivo")
+            elif resultado == "Inactivo":
+                sql = "UPDATE trabajadores SET estado = 'Activo' WHERE id_trabajador = %s"
+                val = (id,)
+                cursor.execute(sql,val)
+                con.commit()
+                print("¡Se a cambiado el estado del trabajador",id,"a Activo")
 
 
