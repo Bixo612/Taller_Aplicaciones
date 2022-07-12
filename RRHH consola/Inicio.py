@@ -5,8 +5,8 @@ sesion = (False,None)
 
 def iniciarSesion():
     print ("*** RRHH ***")
-    user = str(input ("Ingrese usuario: "))
-    password = str(input ("Ingese su clave: "))
+    user = str(input ("--Ingrese usuario: "))
+    password = str(input ("--Ingese su clave: "))
     rol = FxSql.validarClave(user, password)
     (rol, user)
     return (rol, user)
