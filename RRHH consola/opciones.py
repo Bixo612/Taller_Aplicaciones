@@ -1,4 +1,4 @@
-from datetime import date
+
 from funcionesSql import FxSql
 from validaciones import Val
 
@@ -12,18 +12,23 @@ class Opciones ():
             print("1 Cambiar el estado de un trabajador")
             print("2 Listar trabajador por cargo")
             print("3 Listar trabajador por departamento")
+            print("4 Listar trabajador por sexo")
             opcion = input("--Ingrese una opcion: ")
             if opcion == "1":
-                id_trabajador = input("Ingrese el id del trabajador: ")
+                id_trabajador = Val.validarInt("--Ingrese el id del trabajador: ")
                 FxSql.cambiarEstado(id_trabajador)
             if opcion == "2":
-                cargo = input("Ingrese el cargo: ")
+                cargo = Val.validarInt("--Ingrese el cargo: ")
                 for x in FxSql.listarTrabajadoresCargo(cargo):
                     print(x)
             if opcion == "3":
-                departamento = input("Ingrese el departamento: ")
+                departamento = Val.validarInt("--Ingrese el departamento: ")
                 for y in FxSql.listarTrabajadoresDepartamento(departamento):
                     print(y)
+            if opcion == "4":
+                sexo = Val.validarSexo()
+                for z in FxSql.listarTrabajadoresSexo(sexo):
+                    print(z)
             if opcion == "0":
                 exit = False
 
@@ -71,21 +76,26 @@ class Opciones ():
             print("4 Moficar cargo de un trabajador")
             print("5 Modificar Departamento de un trabajador")
             print("6 listar cargos y departamentos")
+            print("7 Restablecer Clave")
             opcion = input("--Ingrese una opcion: ")
             if opcion == "1":
                 for x in FxSql.listarTrabajadores():
                     print (x)
             if opcion == "2":
-                buscar = input("--Ingrese el id a buscar: ")
+                buscar = Val.validarInt("--Ingrese el id a buscar: ")
                 print(FxSql.consultarPerfil(buscar))
             if opcion == "4":
-                id_trabajador   = input("--Ingrese el id del trabajador: ")
+                id_trabajador   = Val.validarInt("--Ingrese el id del trabajador: ")
                 cargo           = Val.validarString("--Ingrese el nuevo cargo: ")
                 FxSql.modificarCargo(id_trabajador,cargo)
             if opcion == "5":
-                id_trabajador   = input("--Ingrese el id del trabajador: ")
+                id_trabajador   = Val.validarInt("--Ingrese el id del trabajador: ")
                 departamento    = Val.validarString("--Ingrse el nuevo departamento: ")
                 FxSql.modificarDepartamento(id_trabajador,departamento)
+            if opcion == "7":
+                id_trabajador = Val.validarInt("--Ingrese la id del trabajador: ")
+                claveNueva = Val.generarClave()
+                FxSql.actualizarClave(id,claveNueva)
             if opcion == "6":
                 print("---CARGOS---")
                 for x in FxSql.listarCargos():
@@ -105,16 +115,16 @@ class Opciones ():
                     fechaNacimiento = Val.validarFecha("--Ingrese la fecha de nacimiento (XXXX-XX-XX): ")
                     sexo            = Val.validarSexo()
                     #
-                    id_trabajador   = input("--Indique el id: ")
-                    telefono        = input("--Indique el telefono: ")
+                    id_trabajador   = Val.validarInt("--Indique el id: ")
+                    telefono        = Val.validarInt("--Indique el telefono: ")
                     direccion       = Val.validarString("--Indique la direccion: ")
                     rol             = Val.validarRol()
-                    clave           = "clave123"
-                    cargo           = input("--Indique el cargo: ")
-                    departamento    = input("--Indique el departamento: ")
+                    cargo           = Val.validarInt("--Indique el cargo: ")
+                    departamento    = Val.validarInt("--Indique el departamento: ")
+                    fechaIngreso    = Val.validarInt("--Indique la fecha de ingreso (XXXX-XX-XX): ")
                     #
                     FxSql.agregarPersona(rut, primerNombre, segundoNombre, primerApellido, segundoApellido, fechaNacimiento, sexo)
-                    FxSql.agregarTrabajador(rut, id_trabajador,"Activo", telefono, direccion, rol, clave,date.today(),departamento,cargo)
+                    FxSql.agregarTrabajador(rut, id_trabajador,"Activo", telefono, direccion, rol, "clave123",fechaIngreso,departamento,cargo)
             if opcion == "0":
                 exit = False
         
@@ -129,6 +139,8 @@ class Opciones ():
             print("4 Agregar departamento")
             print("5 Eliminar cargo")
             print("6 Eliminar Departamento")
+            print("7 Editar Cargo")
+            print("8 Editar Departamento")
             opcion = input("--Ingrese una opcion: ")
             if opcion == "1":
                 for x in FxSql.listarCargos():
@@ -137,8 +149,8 @@ class Opciones ():
                 for y in FxSql.listarDepartamenos():
                     print(y)
             if opcion == "3":
-                id_cargo    = input("--Ingrese el id del cargo: ")
-                cargo      = Val.validarString("--Ingrese el nombre del cargo: ")
+                id_cargo    = Val.validarInt("--Ingrese el id del cargo: ")
+                cargo       = Val.validarString("--Ingrese el nombre del cargo: ")
                 FxSql.agregarCargo(id_cargo, cargo)
             if opcion == "4":
                 id_departamento     = input("--Ingrese el id del departamento: ")
@@ -146,10 +158,10 @@ class Opciones ():
                 area                = Val.validarString("--Ingrese el area: ")
                 FxSql.agregarDepartamento(id_departamento,area,departamento)
             if opcion == "5":
-                id_cargo = input("--Ingrese el id del cargo: ")
+                id_cargo = Val.validarInt("--Ingrese el id del cargo: ")
                 FxSql.borrarCargo(id_cargo)
             if opcion == "6":
-                id_cargo = input("--Ingrese el id del departamento: ")
+                id_cargo = Val.validarInt("--Ingrese el id del departamento: ")
                 FxSql.borrarDepartamento(id_cargo)
             if opcion == "0":
                 exit = False
@@ -169,8 +181,8 @@ class Opciones ():
                 print("A continuacion ingrese los datos del contacto de emergencia")
                 nombre      = Val.validarString("--Ingrese el nombre: ")
                 relacion    = Val.validarString("--Indicque la relacion: ")
-                numero1     = input("--Indique el telefono movil: ")
-                numero2     = input("--Indique el telefono fijo: ")
+                numero1     = Val.validarInt("--Indique el telefono movil: ")
+                numero2     = Val.validarInt("--Indique el telefono fijo: ")
                 FxSql.agregarContactos(nombre, relacion, numero1, numero2, id)
             if opcion == "2":
                 rut             = Val.validarRut("--Ingrese el rut: ")
@@ -194,7 +206,9 @@ class Opciones ():
                 rut = Val.validarRut("--Indique el rut de la carga que desea eliminar: ")
                 FxSql.eliminarCarga(rut, id)
             if opcion == "5":
-                nombre = input("--Indique el nombre del contacto que desea eliminar: ")
+                nombre = Val.validarString("--Indique el nombre del contacto que desea eliminar: ")
                 FxSql.eliminarContactoNombre(nombre, id)
             if opcion == "0":
                 exit = False
+
+

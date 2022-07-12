@@ -1,4 +1,6 @@
 import mysql.connector
+from datetime import date
+
 
 con = mysql.connector.connect(
     host="localhost",
@@ -32,7 +34,7 @@ class FxSql():
         val = (claveNueva,id,)
         cursor.execute(sql, val)
         con.commit()
-        print("¡Contraseña actualizada!")
+        print("¡Contraseña actualizada! *  ",claveNueva,"  *")  
 
     def consultarPerfil(id_trabajador):
         sql = "SELECT trabajadores.id_trabajador, personas.rut, CONCAT(personas.primer_nombre,' ',personas.segundo_nombre,' ',personas.primer_apellido,' ',personas.segundo_apellido), personas.fecha_nacimiento, personas.sexo, trabajadores.telefono, trabajadores.direccion, trabajadores.fecha_ingreso, trabajadores.id_laborales, trabajadores.id_cargo FROM personas JOIN trabajadores ON trabajadores.rut = personas.rut where id_trabajador = %s"
@@ -160,6 +162,13 @@ class FxSql():
         resultado = cursor.fetchall()
         return resultado
 
+    def listarTrabajadoresSexo(sexo):
+        sql = "SELECT trabajadores.id_trabajador, personas.rut, CONCAT(personas.primer_nombre,' ',personas.segundo_nombre,' ',personas.primer_apellido,' ',personas.segundo_apellido), personas.fecha_nacimiento, personas.sexo, trabajadores.telefono, trabajadores.direccion, trabajadores.fecha_ingreso, trabajadores.id_laborales, trabajadores.id_cargo, trabajadores.estado FROM personas JOIN trabajadores ON trabajadores.rut = personas.rut WHERE sexo = %s "
+        val = (sexo,)
+        cursor.execute(sql,val)
+        resultado = cursor.fetchall()
+        return resultado
+
     def modificarCargo(id_trabajador,cargo):
         sql = "UPDATE trabajadores SET id_cargo = %s WHERE id_trabajador = %s"
         val = (cargo,id_trabajador,)
@@ -227,16 +236,17 @@ class FxSql():
             resultado = resultado[0]
             resultado = resultado[0]
             if resultado == "Activo":
-                sql = "UPDATE trabajadores SET estado = 'Inactivo' WHERE id_trabajador = %s"
-                val = (id,)
+                sql = "UPDATE trabajadores SET estado = 'Inactivo',fecha_inactividad = %s WHERE id_trabajador = %s"
+                val = (date.today(),id,)
                 cursor.execute(sql,val)
                 con.commit()
                 print("¡Se a cambiado el estado del trabajador",id,"a Inactivo")
             elif resultado == "Inactivo":
-                sql = "UPDATE trabajadores SET estado = 'Activo' WHERE id_trabajador = %s"
-                val = (id,)
+                sql = "UPDATE trabajadores SET estado = 'Activo' ,fecha_inactividad = NULL,fecha_ingreso = %s WHERE id_trabajador = %s"
+                val = (date.today(),id,)
                 cursor.execute(sql,val)
                 con.commit()
                 print("¡Se a cambiado el estado del trabajador",id,"a Activo")
+
 
 
