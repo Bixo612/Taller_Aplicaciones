@@ -1,4 +1,5 @@
 import random
+from tkinter import E
 from funcionesSql import FxSql
 
 
@@ -8,21 +9,27 @@ class Val():
         cargo = None
         while cargo == None:
             cargo = input("--Indique el id del cargo: ")
-            if FxSql.existeCago(cargo):
-                cargo = None
-                print("¡Id ya en uso!")
+            if cargo.isnumeric():
+                if FxSql.existeCago(cargo):
+                    cargo = None
+                    print("¡Id ya en uso!")
+                else:
+                    return cargo
             else:
-                return cargo
+                cargo = None
 
     def validarDepartamento():
         departamento = None
         while departamento == None:
             departamento = input("--Indique el id del departamento: ")
-            if FxSql.existeDepartamento(departamento):
-                departamento = None
-                print("¡Id ya en uso!")
+            if departamento.isnumeric():
+                if FxSql.existeDepartamento(departamento):
+                    departamento = None
+                    print("¡Id ya en uso!")
+                else:
+                    return departamento
             else:
-                return departamento
+                departamento = None
 
     def generarClave():
         pat = chr(random.randint(65, 90))
@@ -67,7 +74,10 @@ class Val():
             if numero == "" or numero == None:
                 numero = None
             else:
-                return numero
+                if numero.isnumeric():
+                    return numero
+                else:
+                    numero = None
 
     def validarRut(pregunta):
         rut = None

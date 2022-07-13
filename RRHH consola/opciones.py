@@ -21,13 +21,16 @@ class Opciones ():
                 FxSql.cambiarEstado(id_trabajador)
             if opcion == "2":
                 cargo = Val.validarInt("--Ingrese el cargo: ")
-                Fts.formatoTrabajadoresFiltro(FxSql.listarTrabajadoresCargo(cargo))
+                Fts.formatoTrabajadoresFiltro(
+                    FxSql.listarTrabajadoresCargo(cargo))
             if opcion == "3":
                 departamento = Val.validarInt("--Ingrese el departamento: ")
-                Fts.formatoTrabajadoresFiltro(FxSql.listarTrabajadoresDepartamento(departamento))
+                Fts.formatoTrabajadoresFiltro(
+                    FxSql.listarTrabajadoresDepartamento(departamento))
             if opcion == "4":
                 sexo = Val.validarSexo()
-                Fts.formatoTrabajadoresFiltro(FxSql.listarTrabajadoresSexo(sexo))
+                Fts.formatoTrabajadoresFiltro(
+                    FxSql.listarTrabajadoresSexo(sexo))
             if opcion == "0":
                 exit = False
 
@@ -79,7 +82,7 @@ class Opciones ():
             print("3 Agregar Trabajador")
             print("4 Moficar cargo de un trabajador")
             print("5 Modificar Departamento de un trabajador")
-            print("6 listar cargos y departamentos")
+            print("6 Listar cargos y departamentos")
             print("7 Restablecer Clave")
             opcion = input("--Ingrese una opcion: ")
             if opcion == "1":
@@ -139,6 +142,7 @@ class Opciones ():
                                          primerApellido, segundoApellido, fechaNacimiento, sexo)
                     FxSql.agregarTrabajador(rut, id_trabajador, "Activo", telefono,
                                             direccion, rol, "clave123", fechaIngreso, departamento, cargo)
+                    print("¡Se ha registado correctamente! y su clave es: clave123 ")
             if opcion == "0":
                 exit = False
 

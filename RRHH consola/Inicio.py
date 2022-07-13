@@ -6,7 +6,7 @@ sesion = (False,None)
 def iniciarSesion():
     print ("*** RRHH ***")
     user = str(input ("--Ingrese usuario: "))
-    password = str(input ("--Ingese su clave: "))
+    password = str(input ("--Ingrese su clave: "))
     rol = FxSql.validarClave(user, password)
     (rol, user)
     return (rol, user)
@@ -15,7 +15,7 @@ sesion = iniciarSesion()
 if sesion[0] == False:
     print ("Usuario o contraseña incorrecto")
 else:
-    print ("Incio de sesion correcto")
+    print ("Inicio de sesion correcto")
     print ("Bienvenido",sesion[1],sesion[0])
     if sesion[0] == "JR":
         Menu.menuJR(sesion[1])
@@ -26,4 +26,4 @@ else:
     if sesion[0] == "root":
         Menu.menuROOT("root")
 
-print ("Hasta luego :D")
+print ("Hasta luego :")

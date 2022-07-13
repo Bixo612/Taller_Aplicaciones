@@ -8,7 +8,7 @@ class Fts():
         else:
             x = x[0]
             print ("Nombre:",x[2],"| Rut:",x[1],"| Fecha Nacimiento:",x[3])
-            print ("Telefono:",x[5],"| Direccion:",x[6],"| Sexo:",x[5])
+            print ("Telefono:",x[5],"| Direccion:",x[6],"| Sexo:",x[4])
             print ("Cargo:",FxSql.cargXid(x[9]),"| Departamento:",FxSql.depaXid(x[8]),"| Area:",FxSql.areaXid(x[8]))
 
     def formatoBusquedaTrabajador(x):
