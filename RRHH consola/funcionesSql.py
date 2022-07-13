@@ -39,7 +39,7 @@ class FxSql():
         print("¡Contraseña actualizada! *  ",claveNueva,"  *")  
 
     def consultarPerfil(id_trabajador):
-        sql = "SELECT trabajadores.id_trabajador, personas.rut, CONCAT(personas.primer_nombre,' ',personas.segundo_nombre,' ',personas.primer_apellido,' ',personas.segundo_apellido), personas.fecha_nacimiento, personas.sexo, trabajadores.telefono, trabajadores.direccion, trabajadores.fecha_ingreso, trabajadores.id_laborales, trabajadores.id_cargo FROM personas JOIN trabajadores ON trabajadores.rut = personas.rut where id_trabajador = %s"
+        sql = "SELECT trabajadores.id_trabajador, personas.rut, CONCAT(personas.primer_nombre,' ',personas.segundo_nombre,' ',personas.primer_apellido,' ',personas.segundo_apellido), personas.fecha_nacimiento, personas.sexo, trabajadores.telefono, trabajadores.direccion, trabajadores.fecha_ingreso, trabajadores.id_laborales, trabajadores.id_cargo, trabajadores.fecha_inactividad FROM personas JOIN trabajadores ON trabajadores.rut = personas.rut where id_trabajador = %s"
         val = (id_trabajador,)
         cursor.execute(sql, val)
         resultado = cursor.fetchall()
@@ -143,6 +143,12 @@ class FxSql():
         val = (nombre, relacion, numero1, numero2, id_trabajador,)
         cursor.execute(sql, val)
         con.commit()
+
+    def listarTrabajadoresActivos():
+        sql = "SELECT trabajadores.id_trabajador, personas.rut, CONCAT(personas.primer_nombre,' ',personas.segundo_nombre,' ',personas.primer_apellido,' ',personas.segundo_apellido), personas.fecha_nacimiento, personas.sexo, trabajadores.telefono, trabajadores.direccion, trabajadores.fecha_ingreso, trabajadores.id_laborales, trabajadores.id_cargo, trabajadores.estado FROM personas JOIN trabajadores ON trabajadores.rut = personas.rut WHERE trabajadores.estado LIKE 'Activo' ORDER BY trabajadores.id_trabajador"
+        cursor.execute(sql)
+        resultado = cursor.fetchall()
+        return resultado
 
     def listarTrabajadores():
         sql = "SELECT trabajadores.id_trabajador, personas.rut, CONCAT(personas.primer_nombre,' ',personas.segundo_nombre,' ',personas.primer_apellido,' ',personas.segundo_apellido), personas.fecha_nacimiento, personas.sexo, trabajadores.telefono, trabajadores.direccion, trabajadores.fecha_ingreso, trabajadores.id_laborales, trabajadores.id_cargo, trabajadores.estado FROM personas JOIN trabajadores ON trabajadores.rut = personas.rut ORDER BY trabajadores.id_trabajador"
@@ -296,6 +302,3 @@ class FxSql():
         val = (area,departamento,id,)
         cursor.execute(sql,val)
         con.commit()
-
-
-

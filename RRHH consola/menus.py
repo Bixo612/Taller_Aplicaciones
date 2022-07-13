@@ -1,5 +1,6 @@
 from funcionesSql import FxSql
 from opciones import Opciones
+from formatos import Fts
 
 class Menu():
 
@@ -16,7 +17,7 @@ class Menu():
             print("6 Gestor de trabajadores avanzados")
             opcion = input("--Ingrese una opcion: ")
             if opcion == "1":
-                print(FxSql.consultarPerfil(id))
+                Fts.consultarPerfil(FxSql.consultarPerfil(id))
             if opcion == "2":
                 Opciones.gestionCargasContactos(id)
             if opcion == "3":
@@ -41,7 +42,7 @@ class Menu():
             print("4 Editar perfil")
             opcion = input("--Ingrese una opcion: ")
             if opcion == "1":
-                print(FxSql.consultarPerfil(id))
+                Fts.consultarPerfil(FxSql.consultarPerfil(id))
             if opcion == "2":
                 Opciones.gestionCargasContactos(id)
             if opcion == "3":
@@ -61,7 +62,7 @@ class Menu():
             print("3 Editar perfil")
             opcion = input("--Ingrese una opcion: ")
             if opcion == "1":
-                print(FxSql.consultarPerfil(id))
+                Fts.consultarPerfil(FxSql.consultarPerfil(id))
             if opcion == "2":
                 Opciones.gestionCargasContactos(id)
             if opcion == "3":
