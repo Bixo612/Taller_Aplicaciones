@@ -137,8 +137,8 @@ class Opciones ():
             print("4 Agregar departamento")
             print("5 Eliminar cargo")
             print("6 Eliminar Departamento")
-            #print("7 Editar Cargo")
-            #print("8 Editar Departamento")
+            print("7 Editar Cargo")
+            print("8 Editar Departamento")
             opcion = input("--Ingrese una opcion: ")
             if opcion == "1":
                 for x in FxSql.listarCargos():
@@ -157,10 +157,31 @@ class Opciones ():
                 FxSql.agregarDepartamento(id_departamento,area,departamento)
             if opcion == "5":
                 id_cargo = Val.validarInt("--Ingrese el id del cargo: ")
-                FxSql.borrarCargo(id_cargo)
+                if Val.cargoVacio(id_cargo):
+                    FxSql.borrarCargo(id_cargo)
+                else:
+                    print ("¡Existen trabajadores con ese cargo asingado!")
             if opcion == "6":
-                id_cargo = Val.validarInt("--Ingrese el id del departamento: ")
-                FxSql.borrarDepartamento(id_cargo)
+                id_departamento = Val.validarInt("--Ingrese el id del departamento: ")
+                if Val.departamentoVacio(id_departamento):
+                    FxSql.borrarDepartamento(id_departamento)
+                else:
+                    print ("¡Existen trabajadores con ese departamento asingado!")
+            if opcion == "7":
+                id_cargo = Val.validarInt("--Ingrese el id del cargo: ")
+                if FxSql.existeCago(id_cargo):
+                    cargo = Val.validarString("--Ingrese el nuevo nombre del cargo:")
+                    FxSql.modificarCargo(id_cargo,cargo)
+                else:
+                    print ("¡No existe el cargo!")
+            if opcion == "8":
+                id_departamento = Val.validarInt("--Ingrese el id del cargo: ")
+                if FxSql.existeDepartamento(id_departamento): 
+                    departamento = Val.validarString("--Ingrese el nuevo nombre del departamento: ")
+                    area = Val.validarString("--Ingrese la nueva area del departamento: ") 
+                    FxSql.modificarDepartamento(id_departamento,area,departamento)
+                else:
+                    print ("¡No existe el departamento!")  
             if opcion == "0":
                 exit = False
 

@@ -171,18 +171,6 @@ class FxSql():
         resultado = cursor.fetchall()
         return resultado
 
-    def modificarCargo(id_trabajador,cargo):
-        sql = "UPDATE trabajadores SET id_cargo = %s WHERE id_trabajador = %s"
-        val = (cargo,id_trabajador,)
-        cursor.execute(sql, val)
-        con.commit()
-
-    def modificarDepartamento(id_trabajador,departamento):
-        sql = "UPDATE trabajadores SET id_laborales = %s WHERE id_trabajador = %s"
-        val = (departamento,id_trabajador,)
-        cursor.execute(sql, val)
-        con.commit()
-
     def actualizarDireccion(direccion,id_trabajador):
         sql = "UPDATE trabajadores SET direccion = %s WHERE id_trabajador = %s"
         val = (direccion,id_trabajador,)
@@ -269,3 +257,45 @@ class FxSql():
             return False
         else:
             return True
+
+    def cargXid(id):
+        sql = "SELECT nombre_cargo FROM cargos WHERE id_cargo = %s"
+        val = (id,)
+        cursor.execute(sql,val)
+        resultado = cursor.fetchall()
+        resultado = resultado[0]
+        resultado = resultado[0]
+        return resultado
+
+    def areaXid(id):
+        sql = "SELECT area FROM laborales WHERE id_laborales = %s"
+        val = (id,)
+        cursor.execute(sql,val)
+        resultado = cursor.fetchall()
+        resultado = resultado[0]
+        resultado = resultado[0]
+        return resultado
+
+    def depaXid(id):
+        sql = "SELECT departamento FROM laborales WHERE id_laborales = %s"
+        val = (id,)
+        cursor.execute(sql,val)
+        resultado = cursor.fetchall()
+        resultado = resultado[0]
+        resultado = resultado[0]
+        return resultado
+
+    def modificarCargo(id,nombre_cargo):
+        sql = "UPDATE cargos SET nombre_cargo = %s WHERE id_cargo = %s"
+        val = (nombre_cargo,id,)
+        cursor.execute(sql,val)
+        con.commit()
+
+    def modificarDepartamento(id,area,departamento):
+        sql = "UPDATE laborales SET area = %s, departamento = %s WHERE id_laborales = %s"
+        val = (area,departamento,id,)
+        cursor.execute(sql,val)
+        con.commit()
+
+
+

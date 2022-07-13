@@ -120,3 +120,15 @@ class Val():
                     else:
                         print("¡Solo se permiten caracteres numericos!")
                         fecha = None
+
+    def departamentoVacio(id):
+        if (FxSql.listarTrabajadoresDepartamento(id) == []):
+            return True
+        else:
+            return False
+
+    def cargoVacio(id):
+        if (FxSql.listarTrabajadoresCargo(id) == []):
+            return True
+        else:
+            return False
