@@ -1,6 +1,28 @@
 import random
+from funcionesSql import FxSql
+
 
 class Val():
+
+    def validarCargo():
+        cargo = None
+        while cargo == None:
+            cargo = input("--Indique el id del cargo: ")
+            if FxSql.existeCago(cargo):
+                cargo = None
+                print("¡Id ya en uso!")
+            else:
+                return cargo
+
+    def validarDepartamento():
+        departamento = None
+        while departamento == None:
+            departamento = input("--Indique el id del departamento: ")
+            if FxSql.existeDepartamento(departamento):
+                departamento = None
+                print("¡Id ya en uso!")
+            else:
+                return departamento
 
     def generarClave():
         pat = chr(random.randint(65, 90))
@@ -14,7 +36,7 @@ class Val():
         pat = pat + str(random.randint(0, 9))
         pat = pat + str(random.randint(0, 9))
         return pat
-        
+
     def validarSexo():
         sexo = None
         while sexo == None:
@@ -55,7 +77,7 @@ class Val():
         rut = None
         while rut == None:
             rut = input(pregunta)
-            if len(rut) == 0 or len(rut) > 10: 
+            if len(rut) == 0 or len(rut) > 10:
                 rut = None
             else:
                 return rut
@@ -65,11 +87,11 @@ class Val():
         while fecha == None:
             fecha = input(pregunta)
             if len(fecha) != 10:
-                print ("¡Largo de fecha no valido!")
+                print("¡Largo de fecha no valido!")
                 fecha = None
             else:
                 if fecha[4] != "-" and fecha[7] != "-":
-                    print ("¡Formato de fecha no valido!")
+                    print("¡Formato de fecha no valido!")
                     fecha = None
                 else:
                     fechaSeparada = fecha.split("-")
@@ -80,7 +102,7 @@ class Val():
                         else:
                             if int(fechaSeparada[1]) >= 1 and int(fechaSeparada[1]) <= 12:
                                 if int(fechaSeparada[2]) >= 1 and int(fechaSeparada[2]) <= 31:
-                                    if (int(fechaSeparada[1]) == 4 or int(fechaSeparada[1]) == 6 or int(fechaSeparada[1]) == 9 or int(fechaSeparada[1]) == 11 ) and (int(fechaSeparada[2]) == 31):
+                                    if (int(fechaSeparada[1]) == 4 or int(fechaSeparada[1]) == 6 or int(fechaSeparada[1]) == 9 or int(fechaSeparada[1]) == 11) and (int(fechaSeparada[2]) == 31):
                                         print("¡Dia no valido!")
                                         fecha = None
                                     else:
@@ -94,9 +116,7 @@ class Val():
                                     fecha = None
                             else:
                                 print("¡Mes no valido!")
-                                fecha = None              
+                                fecha = None
                     else:
-                        print ("¡Solo se permiten caracteres numericos!")
+                        print("¡Solo se permiten caracteres numericos!")
                         fecha = None
-
-print(Val.generarClave())

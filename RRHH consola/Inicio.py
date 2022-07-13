@@ -23,5 +23,7 @@ else:
         Menu.menuRH(sesion[1])
     if sesion[0] == "TJ":
         Menu.menuTJ(sesion[1])
+    if sesion[0] == "root":
+        Menu.menuROOT("root")
 
 print ("Hasta luego :D")

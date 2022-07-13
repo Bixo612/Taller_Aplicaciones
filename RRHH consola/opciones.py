@@ -119,7 +119,7 @@ class Opciones ():
                     rol             = Val.validarRol()
                     cargo           = Val.validarInt("--Indique el cargo: ")
                     departamento    = Val.validarInt("--Indique el departamento: ")
-                    fechaIngreso    = Val.validarInt("--Indique la fecha de ingreso (XXXX-XX-XX): ")
+                    fechaIngreso    = Val.validarFecha("--Indique la fecha de ingreso (XXXX-XX-XX): ")
                     #
                     FxSql.agregarPersona(rut, primerNombre, segundoNombre, primerApellido, segundoApellido, fechaNacimiento, sexo)
                     FxSql.agregarTrabajador(rut, id_trabajador,"Activo", telefono, direccion, rol, "clave123",fechaIngreso,departamento,cargo)
@@ -137,8 +137,8 @@ class Opciones ():
             print("4 Agregar departamento")
             print("5 Eliminar cargo")
             print("6 Eliminar Departamento")
-            print("7 Editar Cargo")
-            print("8 Editar Departamento")
+            #print("7 Editar Cargo")
+            #print("8 Editar Departamento")
             opcion = input("--Ingrese una opcion: ")
             if opcion == "1":
                 for x in FxSql.listarCargos():
@@ -147,11 +147,11 @@ class Opciones ():
                 for y in FxSql.listarDepartamenos():
                     print(y)
             if opcion == "3":
-                id_cargo    = Val.validarInt("--Ingrese el id del cargo: ")
+                id_cargo    = Val.validarCargo()
                 cargo       = Val.validarString("--Ingrese el nombre del cargo: ")
                 FxSql.agregarCargo(id_cargo, cargo)
             if opcion == "4":
-                id_departamento     = input("--Ingrese el id del departamento: ")
+                id_departamento     = Val.validarDepartamento()
                 departamento        = Val.validarString("--Ingrese el nombre del departamento: ")
                 area                = Val.validarString("--Ingrese el area: ")
                 FxSql.agregarDepartamento(id_departamento,area,departamento)
@@ -184,15 +184,18 @@ class Opciones ():
                 FxSql.agregarContactos(nombre, relacion, numero1, numero2, id)
             if opcion == "2":
                 rut             = Val.validarRut("--Ingrese el rut: ")
-                primerNombre    = Val.validarString("--Ingrese el primer nombre: ")
-                segundoNombre   = Val.validarString("--Ingrese el segundo nombre: ")
-                primerApellido  = Val.validarString("--Ingrese el primer apellido: ")
-                segundoApellido = Val.validarString("--Ingrese el segundo apellido: ")
-                fechaNacimiento = Val.validarFecha("--Ingrese la fecha de nacimiento (XXXX-XX-XX): ")
-                sexo            = Val.validarSexo()
-                relacion        = Val.validarString("--Indique la relacion o parentesco: ")
-                FxSql.agregarPersona(rut, primerNombre, segundoNombre, primerApellido, segundoApellido, fechaNacimiento, sexo)
-                FxSql.agregarCargas(rut, id, relacion)
+                if FxSql.existeRutEnCargas(rut):
+                    print("¡El rut ya esta registrado")
+                else:
+                    primerNombre    = Val.validarString("--Ingrese el primer nombre: ")
+                    segundoNombre   = Val.validarString("--Ingrese el segundo nombre: ")
+                    primerApellido  = Val.validarString("--Ingrese el primer apellido: ")
+                    segundoApellido = Val.validarString("--Ingrese el segundo apellido: ")
+                    fechaNacimiento = Val.validarFecha("--Ingrese la fecha de nacimiento (XXXX-XX-XX): ")
+                    sexo            = Val.validarSexo()
+                    relacion        = Val.validarString("--Indique la relacion o parentesco: ")
+                    FxSql.agregarPersona(rut, primerNombre, segundoNombre, primerApellido, segundoApellido, fechaNacimiento, sexo)
+                    FxSql.agregarCargas(rut, id, relacion)
             if opcion == "3":
                 print("Cargas:")
                 for x in (FxSql.listarCargas(id)):
