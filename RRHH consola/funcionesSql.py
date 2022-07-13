@@ -36,7 +36,7 @@ class FxSql():
         val = (claveNueva,id,)
         cursor.execute(sql, val)
         con.commit()
-        print("¡Contraseña actualizada! *  ",claveNueva,"  *")  
+        print("¡Contraseña actualizada! * ",claveNueva," *")  
 
     def consultarPerfil(id_trabajador):
         sql = "SELECT trabajadores.id_trabajador, personas.rut, CONCAT(personas.primer_nombre,' ',personas.segundo_nombre,' ',personas.primer_apellido,' ',personas.segundo_apellido), personas.fecha_nacimiento, personas.sexo, trabajadores.telefono, trabajadores.direccion, trabajadores.fecha_ingreso, trabajadores.id_laborales, trabajadores.id_cargo, trabajadores.fecha_inactividad FROM personas JOIN trabajadores ON trabajadores.rut = personas.rut where id_trabajador = %s"

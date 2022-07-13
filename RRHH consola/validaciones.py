@@ -27,11 +27,7 @@ class Val():
     def generarClave():
         pat = chr(random.randint(65, 90))
         pat = pat + chr(random.randint(65, 90))
-        pat = pat + chr(random.randint(35, 38))
-        pat = pat + chr(random.randint(97, 122))
-        pat = pat + chr(random.randint(97, 122))
-        pat = pat + chr(random.randint(97, 122))
-        pat = pat + chr(random.randint(35, 38))
+        pat = pat + str(random.randint(0, 9))
         pat = pat + str(random.randint(0, 9))
         pat = pat + str(random.randint(0, 9))
         pat = pat + str(random.randint(0, 9))
