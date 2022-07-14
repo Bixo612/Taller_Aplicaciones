@@ -216,7 +216,7 @@ class Opciones ():
             print("0 Salir")
             print("1 Agregar contacto de emergencia")
             print("2 Agregar carga laboral")
-            print("3 listar cargas y contactos de emergencia")
+            print("3 Listar cargas y contactos de emergencia")
             print("4 Eliminar carga")
             print("5 Eliminar contacto de emergencia")
             opcion = input("--Ingrese una opcion: ")
