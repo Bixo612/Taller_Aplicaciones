@@ -1,4 +1,3 @@
-from ast import In
 import mysql.connector
 
 con = mysql.connector.connect(
@@ -6,7 +5,6 @@ con = mysql.connector.connect(
     user="root",
     password=""
 )
-
 
 cursor = con.cursor()
 

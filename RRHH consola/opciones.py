@@ -2,7 +2,6 @@ from funcionesSql import FxSql
 from validaciones import Val
 from formatos import Fts
 
-
 class Opciones ():
 
     def gestionTrabajadoresAvanzado(id):

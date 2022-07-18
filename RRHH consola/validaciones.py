@@ -1,7 +1,5 @@
 import random
-from tkinter import E
 from funcionesSql import FxSql
-
 
 class Val():
 
@@ -30,15 +28,6 @@ class Val():
                     return departamento
             else:
                 departamento = None
-
-    def generarClave():
-        pat = chr(random.randint(65, 90))
-        pat = pat + chr(random.randint(65, 90))
-        pat = pat + str(random.randint(0, 9))
-        pat = pat + str(random.randint(0, 9))
-        pat = pat + str(random.randint(0, 9))
-        pat = pat + str(random.randint(0, 9))
-        return pat
 
     def validarSexo():
         sexo = None
@@ -138,3 +127,12 @@ class Val():
             return True
         else:
             return False
+
+    def generarClave():
+        pat = chr(random.randint(65, 90))
+        pat = pat + chr(random.randint(65, 90))
+        pat = pat + str(random.randint(0, 9))
+        pat = pat + str(random.randint(0, 9))
+        pat = pat + str(random.randint(0, 9))
+        pat = pat + str(random.randint(0, 9))
+        return pat
