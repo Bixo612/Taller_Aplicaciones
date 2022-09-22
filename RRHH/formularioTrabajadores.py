@@ -126,5 +126,4 @@ CREATE TABLE `rrhh`.`trabajadores` (
     PRIMARY KEY (`id_trabajador`)
 ) ENGINE = InnoDB;"""
 
-
 vent.mainloop()
